@@ -38,9 +38,6 @@ declare -A RPM_PACKAGES=(
   ["rpmfusion-free,rpmfusion-free-updates,rpmfusion-nonfree,rpmfusion-nonfree-updates"]="\
     gstreamer1-plugins-bad-freeworld \
     libavcodec-freeworld \
-    mesa-va-drivers-freeworld \
-    mesa-vdpau-drivers-freeworld \
-    mesa-vulkan-drivers-freeworld \
   "
 
   ["vscodium"]="\
