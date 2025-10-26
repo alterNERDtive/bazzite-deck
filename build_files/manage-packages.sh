@@ -13,6 +13,7 @@ declare -A RPM_PACKAGES=(
     aria2c \
     btop \
     btrbk \
+    chezmoi \
     mangohud \
     mpv \
     neovim \
