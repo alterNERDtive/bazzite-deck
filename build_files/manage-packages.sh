@@ -22,6 +22,8 @@ declare -A RPM_PACKAGES=(
     thunderbird \
     vkbasalt \
     zsh \
+    zsh-autosuggestions \
+    zsh-syntax-highlighting \
   "
 
   ["librewolf"]="\
