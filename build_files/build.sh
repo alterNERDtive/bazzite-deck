@@ -44,17 +44,17 @@ for copr in ${coprs[@]}; do
   dnf -y copr disable $copr
 done
 
-flatpaks=(
-  com.bitwarden.desktop
-  me.kozec.syncthingtk
-  net.davidotek.pupgui2
-)
-
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-for pak in ${flatpaks[@]}; do
-  flatpak -y install --system flathub $pak
-done
+# flatpaks=(
+#   com.bitwarden.desktop
+#   me.kozec.syncthingtk
+#   net.davidotek.pupgui2
+# )
+#
+# flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+#
+# for pak in ${flatpaks[@]}; do
+#   flatpak -y install --system flathub $pak
+# done
 
 stgfile=https://github.com/streamlink/streamlink-twitch-gui/releases/download/v2.5.3/streamlink-twitch-gui-v2.5.3-x86_64.AppImage
 
