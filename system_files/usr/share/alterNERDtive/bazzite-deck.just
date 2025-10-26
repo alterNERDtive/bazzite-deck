@@ -2,7 +2,7 @@
 nerd-install: nerd-install-flatpaks nerd-install-brews nerd-install-appimages
 
 # Install only Flatpaks
-[group('nerd')]
+[group("nerd")]
 nerd-install-flatpaks:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -12,7 +12,7 @@ nerd-install-flatpaks:
     echo "Flatpaks installation complete."
 
 # Install only Homebrews
-[group('nerd')]
+[group("nerd")]
 nerd-install-brews:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -22,7 +22,7 @@ nerd-install-brews:
     echo "Homebrews installation complete."
 
 # Install only AppImages
-[group('nerd')]
+[group("nerd")]
 nerd-install-appimages:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -80,7 +80,7 @@ nerd-install-appimages:
         echo "Failed to install $name"
       fi
       rm -f "$appimage"
-    done < <(curl --retry 3 -sL https://raw.githubusercontent.com/astrovm/amyos/main/repo_files/appimages)
+    done < <(cat /usr/share/alterNERDtive/appimage.list)
     echo "AppImages installation complete."
 
 # Clean up old packages and Docker/Podman images and volumes
