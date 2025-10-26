@@ -1,5 +1,5 @@
 # Install all Amy OS curated apps
-nerd-install: nerd-install-flatpaks nerd-install-brews nerd-install-appimages
+nerd-install: nerd-install-flatpaks nerd-install-appimages
 
 # Install only Flatpaks
 [group("nerd")]
