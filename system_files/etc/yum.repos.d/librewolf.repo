@@ -1,4 +1,4 @@
-[repository]
+[librewolf]
 name=LibreWolf Software Repository
 baseurl=https://repo.librewolf.net
 gpgcheck=1

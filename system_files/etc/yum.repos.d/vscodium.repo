@@ -1,4 +1,4 @@
-[gitlab.com_paulcarroty_vscodium_repo]
+[vscodium]
 baseurl = https://download.vscodium.com/rpms/
 enabled = 1
 gpgcheck = 1

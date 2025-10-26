@@ -7,14 +7,6 @@ log() {
   echo "=== $* ==="
 }
 
-log "Removing packages …"
-
-declare -a DELETE_LIST=(
-  firefox
-)
-
-dnf -y remove ${DELETE_LIST[@]}
-
 # RPM packages list
 declare -A RPM_PACKAGES=(
   ["fedora"]="\
@@ -57,9 +49,9 @@ declare -A RPM_PACKAGES=(
   "
 )
 
-log "Starting build process"
+log "Starting package management …"
 
-log "Installing RPM packages"
+log "Installing RPM packages …"
 mkdir -p /var/opt
 for repo in "${!RPM_PACKAGES[@]}"; do
   read -ra pkg_array <<<"${RPM_PACKAGES[$repo]}"
@@ -79,7 +71,4 @@ for repo in "${!RPM_PACKAGES[@]}"; do
   fi
 done
 
-log "Adding just recipes"
-echo "import \"/usr/share/alterNERDtive/just/bazzite-deck.just\"" >>/usr/share/ublue-os/justfile
-
-log "Build process completed"
+log "Package management completed"
