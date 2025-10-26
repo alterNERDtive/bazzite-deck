@@ -8,4 +8,4 @@ log() {
 }
 
 log "Adding just recipes …"
-echo "import \"/usr/share/alterNERDtive/just/bazzite-deck.just\"" >>/usr/share/ublue-os/justfile
+echo "import \"/usr/share/alterNERDtive/bazzite-deck.just\"" >>/usr/share/ublue-os/justfile
