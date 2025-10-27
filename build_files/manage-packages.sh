@@ -19,6 +19,7 @@ declare -A RPM_PACKAGES=(
     neovim \
     python3-streamlink \
     syncthing \
+    thefuck \
     thunderbird \
     vkbasalt \
     zsh \
