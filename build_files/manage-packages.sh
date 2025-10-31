@@ -44,7 +44,7 @@ declare -A RPM_PACKAGES=(
     heroic-games-launcher-bin \
   "
 
-  ["copr:sammyette/jellyfin-media-player"]="\
+  ["copr:pgdev/jellyfin"]="\
     jellyfin-media-player \
   "
 
