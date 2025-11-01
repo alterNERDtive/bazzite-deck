@@ -36,6 +36,17 @@ jobs:
       id-token: write
 
     steps:
+      - name: Free disk space
+        uses: endersonmenezes/free-disk-space@v3
+        with:
+          remove_android: true
+          remove_dotnet: true
+          remove_haskell: true
+          remove_tool_cache: true
+          remove_swap: true
+          rm_cmd: rmz
+          rmz_version: 3.1.1
+
       - name: Prepare environment
         run: |
           # Lowercase the image uri
