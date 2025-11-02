@@ -1,10 +1,15 @@
-[![Build Status](https://github.com/alterNERDtive/bazzite-deck/actions/workflows/build.yml/badge.svg)](https://github.com/alterNERDtive/bazzite-deck/actions/workflows/build.yml)
-
 # Custom Bazzite-Deck Image
+
+[![Build Status](https://github.com/alterNERDtive/bazzite-deck/actions/workflows/build.yml/badge.svg)](https://github.com/alterNERDtive/bazzite-deck/actions/workflows/build.yml)
 
 This is my custom Bazzite image for my Steam Deck.
 
-You can build your own at https://github.com/ublue-os/image-template
+You can build your own at [https://github.com/ublue-os/image-template](https://github.com/ublue-os/image-template).
+
+## Changes compared to base Bazzite
+
+I am way too lazy to make a list and keep it up to date. Just check out the
+`build` folder.
 
 ## Install
 
