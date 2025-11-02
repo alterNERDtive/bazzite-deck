@@ -121,18 +121,27 @@ jobs:
           sep-tags: " "
           sep-annotations: " "
 
-      - name: Build Image
+      - name: Build Image (rootful)
         id: build_image
-        uses: redhat-actions/buildah-build@7a95fa7ee0f02d552a32753e7414641a04307056 # v2
-        with:
-          containerfiles: |
-            ./Containerfile
-          # Postfix image name with -custom to make it a little more descriptive
-          # Syntax: https://docs.github.com/en/actions/learn-github-actions/expressions#format
-          image: ${{ env.IMAGE_NAME }}
-          tags: ${{ steps.metadata.outputs.tags }}
-          labels: ${{ steps.metadata.outputs.labels }}
-          oci: false
+        run: |
+          # Builds image in root store as root, to be picked up by Rechunker
+          sudo buildah bud \
+            --format docker \
+            --tag "localhost/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}" \
+            --file Containerfile \
+
+      - name: Remove source images
+        run: |
+          images=$(sudo podman images -n --sort repository --format '{{.ID}} {{.Repository}}' | grep -v localhost | awk '{print $1}')
+          echo "${images}"
+          if [ -n "${images}" ]; then
+            for image in ${images}; do
+              echo "Removing image: $image"
+              sudo podman rmi "$image"
+            done
+          else
+            echo "No images to remove."
+          fi
 
       # Rechunk is a script that we use on Universal Blue to make sure there isnt a single huge layer when your image gets published.
       # This does not make your image faster to download, just provides better resumability and fixes a few errors.
@@ -140,20 +149,39 @@ jobs:
       # You can enable it by uncommenting the following lines:
       - name: Run Rechunker
         id: rechunk
-        uses: hhd-dev/rechunk@f153348d8100c1f504dec435460a0d7baf11a9d2 # v1.1.1
+        uses: hhd-dev/rechunk@v1.2.4
         with:
-          rechunk: 'ghcr.io/hhd-dev/rechunk:v1.0.1'
+          rechunk: "ghcr.io/hhd-dev/rechunk:v1.2.4"
           ref: "localhost/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}"
           prev-ref: "${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}"
-          skip_compression: true
-          version: ${{ env.CENTOS_VERSION }}
+          skip_compression: false
+          max-layers: 60
           labels: ${{ steps.metadata.outputs.labels }} # Rechunk strips out all the labels during build, this needs to be reapplied here with newline separator
 
-      # This is necessary so that the podman socket can find the rechunked image on its storage
+      - name: Rechunk output
+        run: |
+          if [[ "${{ steps.rechunk.conclusion }}" == "success" ]]; then
+            echo "${{ steps.rechunk.outputs.changelog }}"
+            echo "${{ steps.rechunk.outputs.manifest }}"
+          else
+            echo "Rechunk conclusion:"
+            echo "${{ steps.rechunk.conclusion }}"
+          fi
+
+      - name: Remove Rechunker image
+        run: |
+          image=$(sudo podman images -n --sort repository --format '{{.ID}} {{.Repository}}' | grep rechunk | awk '{print $1}')
+          echo "${image}" | true
+          if [ -n "${image}" ]; then
+            sudo podman rmi "$image"
+          else
+            echo "No image to remove"
+          fi
+
       - name: Load in podman and tag
         run: |
           IMAGE=$(podman pull ${{ steps.rechunk.outputs.ref }})
-          sudo rm -rf ${{ steps.rechunk.outputs.output }}
+          sudo rm -rf ${{ steps.rechunk.outputs.location }}
           for tag in ${{ steps.metadata.outputs.tags }}; do
             podman tag $IMAGE ${{ env.IMAGE_NAME }}:$tag
           done
