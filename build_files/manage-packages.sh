@@ -14,6 +14,9 @@ declare -A RPM_PACKAGES=(
     btop \
     btrbk \
     chezmoi \
+    difftastic \
+    direnv \
+    fzf \
     mangohud \
     mpv \
     neovim \
@@ -22,6 +25,7 @@ declare -A RPM_PACKAGES=(
     thefuck \
     thunderbird \
     vkbasalt \
+    zoxide \
     zsh \
     zsh-autosuggestions \
     zsh-syntax-highlighting \
@@ -50,6 +54,10 @@ declare -A RPM_PACKAGES=(
 
   ["copr:solopasha/kitty"]="\
     kitty \
+  "
+
+  ["copr:aldantanneo/jj-vcs"]="\
+    jj-cli \
   "
 )
 
