@@ -44,6 +44,14 @@ declare -A RPM_PACKAGES=(
     codium \
   "
 
+  ["copr:aldantanneo/jj-vcs"]="\
+    jj-cli \
+  "
+
+  ["copr:atim/starship"]="\
+    starship \
+  "
+
   ["copr:lnvso/heroic-games-launcher"]="\
     heroic-games-launcher-bin \
   "
@@ -54,10 +62,6 @@ declare -A RPM_PACKAGES=(
 
   ["copr:solopasha/kitty"]="\
     kitty \
-  "
-
-  ["copr:aldantanneo/jj-vcs"]="\
-    jj-cli \
   "
 )
 
