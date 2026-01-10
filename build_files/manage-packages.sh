@@ -13,17 +13,19 @@ declare -A RPM_PACKAGES=(
     aria2c \
     btop \
     btrbk \
+    cargo \
     chezmoi \
     difftastic \
-    direnv \
     fzf \
     mangohud \
     mpv \
     neovim \
-    python3-streamlink \
+    pipx \
     syncthing \
     thefuck \
     thunderbird \
+    tmux \
+    uv \
     vkbasalt \
     zoxide \
     zsh \
@@ -50,6 +52,10 @@ declare -A RPM_PACKAGES=(
 
   ["copr:atim/starship"]="\
     starship \
+  "
+
+  ["copr:jdxcode/mise"]="\
+    mise \
   "
 
   ["copr:lnvso/heroic-games-launcher"]="\

@@ -1,5 +1,5 @@
 # Install all Amy OS curated apps
-nerd-install: nerd-install-flatpaks nerd-install-appimages
+nerd-install: nerd-install-flatpaks nerd-install-appimages nerd-mise-upgrade
 
 # Install only Flatpaks
 [group("nerd")]
@@ -83,6 +83,16 @@ nerd-install-appimages:
     done < <(cat /usr/share/alterNERDtive/appimage.list)
     echo "AppImages installation complete."
 
+# Install only Homebrews
+[group("nerd")]
+nerd-mise-upgrade:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    echo "Upgrading Mise packages …"
+    mise upgrade
+    echo "Mise upgrade complete."
+
 # Clean up old packages and Docker/Podman images and volumes
 [group("nerd")]
 nerd-clean:
@@ -94,3 +104,4 @@ nerd-clean:
     flatpak uninstall --unused
     rpm-ostree cleanup -bm
     sudo podman system prune -af
+    mise prune -y
