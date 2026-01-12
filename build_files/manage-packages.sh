@@ -16,6 +16,7 @@ declare -A RPM_PACKAGES=(
     cargo \
     chezmoi \
     difftastic \
+    diff-so-fancy \
     fzf \
     mangohud \
     mpv \
