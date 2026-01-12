@@ -63,6 +63,10 @@ declare -A RPM_PACKAGES=(
     heroic-games-launcher-bin \
   "
 
+  ["copr:lihaohong/forgejo-cli"]="\
+    forgejo-cli \
+  "
+
   ["copr:pgdev/jellyfin"]="\
     jellyfin-media-player \
   "
