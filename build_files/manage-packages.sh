@@ -20,6 +20,7 @@ declare -A RPM_PACKAGES=(
     fzf \
     mangohud \
     mpv \
+    nodejs-npm \
     neovim \
     pipx \
     syncthing \
